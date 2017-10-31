@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 68424,
-  "expoServerNgrokUrl": "https://a6-j7j.taylorkwon.react-weather.exp.direct",
-  "packagerNgrokUrl": "https://packager.a6-j7j.taylorkwon.react-weather.exp.direct",
-  "ngrokPid": 68440
+  "expoServerPort": 19001,
+  "packagerPort": 19003,
+  "packagerPid": 72616,
+  "expoServerNgrokUrl": "https://qi-uan.taylorkwon.react-weather.exp.direct",
+  "packagerNgrokUrl": "https://packager.qi-uan.taylorkwon.react-weather.exp.direct",
+  "ngrokPid": 72631
 }
