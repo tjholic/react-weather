@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import Weather from "./Weather";
 
-const API_KEY_OPEN_WEATHER_MAP = "your_key";
+const API_KEY_OPEN_WEATHER_MAP = "your_api_key";
 
 export default class App extends React.Component {
   state = {
@@ -14,7 +14,8 @@ export default class App extends React.Component {
   componentWillMount() {
     navigator.geolocation.getCurrentPosition(
       position => {
-        getWeather(position.coords.latitude, position.coords.longitude);
+        console.log(position);
+        this.getWeather(position.coords.latitude, position.coords.longitude);
       },
       error => {
         err: error;
@@ -24,7 +25,7 @@ export default class App extends React.Component {
 
   getWeather = (lat, lon) => {
     fetch(
-      `api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${API_KEY_OPEN_WEATHER_MAP}`
+      `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${API_KEY_OPEN_WEATHER_MAP}`
     )
       .then(response => response.json())
       .then(json => {
@@ -34,18 +35,22 @@ export default class App extends React.Component {
           name: json.weather[0].main,
           isLoaded: true
         });
-      });
+      })
+      .catch(function(error) {console.log('There has been a problem with your fetch opration: ' + error.message);});
   };
+
   render() {
-    const { isLoaded, err } = this.state;
+    const { isLoaded, err, temperature, name } = this.state;
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
         {isLoaded ? (
-          <Weather />
+          <Weather weatherName={name} temperature={Math.floor(temperature - 273.15)}/>
         ) : (
           <View style={styles.loading}>
-            <Text style={styles.loadingText}>Getting the fucking weather</Text>
+            <Text style={styles.loadingText}>
+              {err}Getting the react weather
+            </Text>
             {err ? <Text style={styles.errorText}>{err}</Text> : null}
           </View>
         )}
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
   },
   loading: {
     flex: 1,
-    backgroundColor: "#FDF6AA",
+    backgroundColor: "#fff",
     justifyContent: "flex-end",
     paddingLeft: 30
   },

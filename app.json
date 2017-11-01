@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "fucking-weather",
+    "name": "react-weather",
     "description": "An empty new project",
-    "slug": "fucking-weather",
+    "slug": "react-weather",
     "privacy": "public",
     "sdkVersion": "22.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/ic_cloud.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/react-native-background.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,8 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.taylorkwon.reactweather"
     }
   }
 }
