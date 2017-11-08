@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
+import { StyleSheet, Text, View, StatusBar, AppState } from "react-native";
 import Weather from "./Weather";
 
 const API_KEY_OPEN_WEATHER_MAP = "your_api_key";
@@ -9,9 +9,23 @@ export default class App extends React.Component {
     isLoaded: false,
     err: null,
     temperature: null,
-    name: null
+    name: null,
+    appState: AppState.currentState
+
   };
   componentWillMount() {
+    this.requestWeather();
+  }
+
+  componentDidMount() {
+    AppState.addEventListener('change', this.handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this.handleAppStateChange);
+  }
+
+  requestWeather() {
     navigator.geolocation.getCurrentPosition(
       position => {
         console.log(position);
@@ -21,6 +35,15 @@ export default class App extends React.Component {
         err: error;
       }
     );
+  }
+
+  handleAppStateChange = (nextAppState) => {
+    if(this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      console.log('App has come to the foreground')
+      this.requestWeather();
+    }
+
+    this.setState({appState: nextAppState});
   }
 
   getWeather = (lat, lon) => {

@@ -1,8 +1,8 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 1443,
+  "expoServerNgrokUrl": "https://jc-mfp.taylorkwon.react-weather.exp.direct",
+  "packagerNgrokUrl": "https://packager.jc-mfp.taylorkwon.react-weather.exp.direct",
+  "ngrokPid": 1506
 }
